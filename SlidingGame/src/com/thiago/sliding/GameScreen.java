@@ -23,11 +23,28 @@ public class GameScreen extends Screen {
 
     int livesLeft = 1;
     Paint paint;
+    
+    //TODO: Create class for above variables. Create also a piece class, with a Rect, a grid position(x,y), and an index(x + y*gridWidth)
+    List<Rect> pieces = new ArrayList<Rect>();
+    int gridWidth = 3;
+    int gridHeight = 3;
+    Rect puzzleRect = new Rect(100,100,400,400);
+    
 
     public GameScreen(Game game) {
         super(game);
 
         // Initialize game objects here
+        Assets.puzzleImage = g.newImage("puzzleImage1.jpg", ImageFormat.RGB565);
+        //TODO: Create method for this
+        int pieceWidth = (int)puzzleRect.getWidth() / gridWidth;
+        int pieceWidth = (int)puzzleRect.getHeight() / gridHeight;
+        for(int x=0; x < gridWidth; x++)
+            for(int y=0; y < gridHeight; y++)
+            {
+                Rect rec = new Rect(x * pieceWidth, y * pieceWidth, pieceHeight, pieceHeight);
+                pieces.add(rec);
+            }
 
         // Defining a paint object
         paint = new Paint();
