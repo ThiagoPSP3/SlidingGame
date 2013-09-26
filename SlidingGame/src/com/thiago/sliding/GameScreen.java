@@ -41,7 +41,9 @@ public class GameScreen extends Screen {
         
         
         // Initialize game objects here
-        
+
+		Graphics g = game.getGraphics();
+        Assets.puzzleImage = g.newImage("puzzleImage0101.jpg", ImageFormat.RGB565);
         puzzleImage = Assets.puzzleImage;
         
         //TODO: Create method for this
@@ -54,7 +56,6 @@ public class GameScreen extends Screen {
             	pieces.add(piece);
             }
         
-		Graphics g = game.getGraphics();
         for(Piece piece : pieces){
         	g.drawImage(puzzleImage,piece.getPosX(),piece.getPosY(),piece.getRect());
         }
