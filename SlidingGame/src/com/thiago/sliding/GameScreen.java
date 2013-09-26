@@ -1,12 +1,15 @@
 package com.thiago.sliding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 import com.thiago.framework.Game;
 import com.thiago.framework.Graphics;
+import com.thiago.framework.Graphics.ImageFormat;
 import com.thiago.framework.Image;
 import com.thiago.framework.Screen;
 import com.thiago.framework.Input.TouchEvent;
@@ -25,24 +28,25 @@ public class GameScreen extends Screen {
     Paint paint;
     
     //TODO: Create class for above variables. Create also a piece class, with a Rect, a grid position(x,y), and an index(x + y*gridWidth)
-    List<Rect> pieces = new ArrayList<Rect>();
+    List<RectF> pieces = new ArrayList<RectF>();
     int gridWidth = 3;
     int gridHeight = 3;
-    Rect puzzleRect = new Rect(100,100,400,400);
+    RectF puzzleRect = new RectF(100,100,400,400);
     
 
     public GameScreen(Game game) {
         super(game);
-
+        
         // Initialize game objects here
+        Graphics g = game.getGraphics();
         Assets.puzzleImage = g.newImage("puzzleImage1.jpg", ImageFormat.RGB565);
         //TODO: Create method for this
-        int pieceWidth = (int)puzzleRect.getWidth() / gridWidth;
-        int pieceWidth = (int)puzzleRect.getHeight() / gridHeight;
+        int pieceWidth = (int)puzzleRect.width() / gridWidth;
+        int pieceHeight = (int)puzzleRect.height() / gridHeight;
         for(int x=0; x < gridWidth; x++)
             for(int y=0; y < gridHeight; y++)
             {
-                Rect rec = new Rect(x * pieceWidth, y * pieceWidth, pieceHeight, pieceHeight);
+            	RectF rec = new RectF(x * pieceWidth, y * pieceWidth, pieceWidth, pieceHeight);
                 pieces.add(rec);
             }
 
