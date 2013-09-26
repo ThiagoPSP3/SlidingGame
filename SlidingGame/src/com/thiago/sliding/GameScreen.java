@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 
 import com.thiago.framework.Game;
@@ -22,33 +23,41 @@ public class GameScreen extends Screen {
     GameState state = GameState.Ready;
 
     // Variable Setup
+    
+    private Image puzzleImage;
+    
     // You would create game objects here.
 
     int livesLeft = 1;
     Paint paint;
     
-    //TODO: Create class for above variables. Create also a piece class, with a Rect, a grid position(x,y), and an index(x + y*gridWidth)
-    List<RectF> pieces = new ArrayList<RectF>();
-    int gridWidth = 3;
-    int gridHeight = 3;
-    RectF puzzleRect = new RectF(100,100,400,400);
-    
+    List<Piece> pieces = new ArrayList<Piece>();
+    int gridSize = 3;
+    int topMargin = 360;
+    int gridMargin = 0;
 
     public GameScreen(Game game) {
         super(game);
         
+        
         // Initialize game objects here
-        Graphics g = game.getGraphics();
-        Assets.puzzleImage = g.newImage("puzzleImage1.jpg", ImageFormat.RGB565);
+        
+        puzzleImage = Assets.puzzleImage;
+        
         //TODO: Create method for this
-        int pieceWidth = (int)puzzleRect.width() / gridWidth;
-        int pieceHeight = (int)puzzleRect.height() / gridHeight;
-        for(int x=0; x < gridWidth; x++)
-            for(int y=0; y < gridHeight; y++)
+        int pieceSize = (int)puzzleImage.getWidth() / gridSize;
+        for(int x=0; x < gridSize; x++)
+            for(int y=0; y < gridSize; y++)
             {
-            	RectF rec = new RectF(x * pieceWidth, y * pieceWidth, pieceWidth, pieceHeight);
-                pieces.add(rec);
+            	Rect rec = new Rect(x * pieceSize, y * pieceSize, pieceSize, pieceSize);
+                Piece piece = new Piece(rec,x*pieceSize,y*pieceSize + topMargin,x+y*gridSize);
+            	pieces.add(piece);
             }
+        
+		Graphics g = game.getGraphics();
+        for(Piece piece : pieces){
+        	g.drawImage(puzzleImage,piece.getPosX(),piece.getPosY(),piece.getRect());
+        }
 
         // Defining a paint object
         paint = new Paint();

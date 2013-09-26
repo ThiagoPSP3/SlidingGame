@@ -1,6 +1,7 @@
 package com.thiago.framework;
 
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 public interface Graphics {
     public static enum ImageFormat {
@@ -17,6 +18,8 @@ public interface Graphics {
 
     public void drawImage(Image image, int x, int y, int srcX, int srcY,
             int srcWidth, int srcHeight);
+    
+    public void drawImage(Image Image, int x, int y, Rect rec);
 
     public void drawImage(Image Image, int x, int y);
 

@@ -12,7 +12,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
-
 import com.thiago.framework.Graphics;
 import com.thiago.framework.Image;
 
@@ -124,6 +123,10 @@ public class AndroidGraphics implements Graphics {
 
         canvas.drawBitmap(((AndroidImage) Image).bitmap, srcRect, dstRect,
                 null);
+    }
+    
+    public void drawImage(Image Image,int x,int y, Rect rec){
+    	drawImage(Image,x,y,rec.left,rec.top,rec.width(),rec.height());
     }
     
     @Override

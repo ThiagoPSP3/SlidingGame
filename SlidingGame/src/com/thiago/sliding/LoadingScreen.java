@@ -1,6 +1,8 @@
 package com.thiago.sliding;
 
 
+import android.R;
+
 import com.thiago.framework.Game;
 import com.thiago.framework.Graphics;
 import com.thiago.framework.Screen;
@@ -17,7 +19,8 @@ public class LoadingScreen extends Screen {
     public void update(float deltaTime) {
         Graphics g = game.getGraphics();
         Assets.menu = g.newImage("menu.jpg", ImageFormat.RGB565);
-        Assets.click = game.getAudio().createSound("explode.ogg");
+        Assets.puzzleImage = g.newImage("puzzleImage0101.jpg", ImageFormat.RGB565);
+        //Assets.click = game.getAudio().createSound("explode.ogg");
 
 
         
